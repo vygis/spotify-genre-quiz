@@ -12,8 +12,8 @@ Install:
   $ npm install
 ```
 
-Run: (requires Spotify token)
+Run: (requires Spotify client id and secret in order to access the API)
 
 ```
-  $ SPOTIFY_TOKEN=<token> npm start
+  $ SPOTIFY_ID=<id> SPOTIFY_SECRET=<secret> npm start
 ```
