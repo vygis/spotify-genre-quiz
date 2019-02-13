@@ -1,8 +1,18 @@
+import webpack from 'webpack';
+
 const config = {
-  entry: './lib/components/app.js',
+  entry: [
+    'webpack-hot-middleware/client',
+    './lib/components/app.js'
+  ],
+  mode: 'development',
   output: {
+    publicPath: '/',
     filename: 'bundle.js'
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
   module: {
     rules: [
       {
