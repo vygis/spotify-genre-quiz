@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "babel-node lib/server.js",
+    "start": "babel-node src/server.js",
     "webpack": "webpack -wd"
   },
   "repository": {
@@ -29,12 +29,15 @@
     "@babel/runtime": "^7.3.1",
     "axios": "^0.18.0",
     "axios-observable": "^1.0.7",
+    "bootstrap": "^4.3.1",
     "express": "^4.16.4",
     "lodash-es": "^4.17.11",
+    "prop-types": "^15.7.2",
     "qs": "^6.6.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "rxjs": "^6.4.0",
+    "typeface-rubik": "0.0.54",
     "universal-base64": "^2.0.1",
     "webpack": "^4.29.3"
   },
@@ -49,7 +52,11 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-2": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "file-loader": "^3.0.1",
     "react-hot-loader": "^4.6.5",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
     "webpack-cli": "^3.2.3",
     "webpack-dev-middleware": "^3.5.2",
     "webpack-hot-middleware": "^2.24.3"

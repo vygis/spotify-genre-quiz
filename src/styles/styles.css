@@ -1,0 +1,37 @@
+body {
+  font-family: 'Rubik'
+}
+.navbar, .badge {
+  background-color: #0099cc;
+}
+.badge {
+  cursor: pointer;
+}
+.correct {
+  background: darkgreen;
+  cursor: default;
+}
+.incorrect {
+  background: crimson;
+  cursor: default;
+}
+.card {
+  width: 300px;
+  border-color: #00ace6;
+  background-color: #e6f9ff;
+}
+.card-img-wrapper {
+  width: 298px;
+  max-height: 298px;
+  overflow-y: hidden;
+  position: relative;
+}
+.card-overlay {
+  position: absolute;
+  background-color: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: #ffffff;
+}
