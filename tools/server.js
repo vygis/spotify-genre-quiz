@@ -1,14 +1,12 @@
 import express from 'express';
-import getQuizData from './data';
+import getQuizData from '../src/data';
 import path from 'path';
 import webpack from 'webpack';
 import config from '../webpack.config.js';
 
 const app = express();
 const compiler = webpack(config);
-const port = 3000
-
-app.use(express.static('dist'));
+const port = process.env.PORT || 3000;
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,

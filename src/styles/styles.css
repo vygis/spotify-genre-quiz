@@ -1,6 +1,9 @@
 body {
-  font-family: 'Rubik'
+  font-family: 'Rubik' !important;
 }
+
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 .navbar, .badge {
   background-color: #0099cc;
 }
