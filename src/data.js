@@ -1,13 +1,13 @@
-import { api, auth } from './spotify';
-import { retryWhen, map, mergeMap, repeat, scan, switchMap, take, tap } from 'rxjs/operators';
-import { sampleSize, shuffle } from 'lodash';
-import { from, interval, of } from 'rxjs';
+import { api, auth, irrelevantGenres, relatedGenres } from './spotify';
+import { retryWhen, map, mergeMap, scan, switchMap, take, tap } from 'rxjs/operators';
+import { sample, sampleSize, shuffle, times, uniqBy } from 'lodash';
+import { from, interval } from 'rxjs';
 import { stringify } from 'qs';
 
-function getGenreOptions(allGenres, genre, numberOfIncorrectOptions = 4) {
+function getGenreOptions(allGenres, genre, numberOfIncorrectOptions = 4, relGenres = relatedGenres) {
   return shuffle(
     shuffle(allGenres)
-    .filter(g => g !== genre) //TODO improve to filter out incorrect genres that are too similar to the correct one
+    .filter(g => g !== genre && !(relGenres[genre] || []).includes(g))
     .splice(0, numberOfIncorrectOptions)
     .map(g => ({ value: g, isCorrect: false }))
     .concat({ value: genre, isCorrect: true})
@@ -24,21 +24,44 @@ export default async function getQuizData (resultSampleSize) {
       ))
     )),
     take(1),
-    map(resp => ({
-      allGenres: resp.data.genres,
-      sampledGenres: sampleSize(resp.data.genres, resultSampleSize)
+    map(resp => resp.data.genres.filter(genre => !irrelevantGenres.includes(genre))),
+    map(genres => ({
+      allGenres: genres,
+      sampledGenres: times(resultSampleSize)
+        .map(() => sample(genres)) // allowing the same genre to appear multiple times
+        .reduce((pairs, genre) => {
+          const found = pairs.find(pair => pair.genre === genre);
+          if (found) {
+            found.occurrences++;
+          }
+          return pairs.concat(found ? [] : { genre, occurrences: 1 });
+        }, [])
     })),
     switchMap(({ allGenres, sampledGenres }) => from(sampledGenres).pipe(
-      mergeMap(genre => api.get(`/recommendations?seed_genres=${genre}`).pipe(
-        map(response => ({
-          genre,
-          artistName: response.data.tracks[0].album.artists[0].name,
-          albumName: response.data.tracks[0].album.name,
-          albumCoverUrl: response.data.tracks[0].album.images[1].url,
-          genreOptions: getGenreOptions(allGenres, genre)
-        }))
+      mergeMap(({ genre, occurrences }) => api.get(`/recommendations?seed_genres=${genre}`).pipe(
+        map(({ data: { tracks }}) => {
+          return sampleSize(
+              uniqBy(
+                tracks
+                  .filter(({ artists}) => artists.length <2)
+                  .map(({ album }) => album)
+                  .filter(({ album_type }) => album_type !== 'compilation'),
+                'id'
+              ),
+              occurrences
+            )
+              .map(({ artists, images, name }) => ({
+                genre,
+                artistName: artists[0].name,
+                albumName: name,
+                albumCoverUrl: images[1].url,
+                genreOptions: getGenreOptions(allGenres, genre)
+              }));
+          }
+        )
       ))
     )),
-    scan((acc, curr) => [...acc, curr], [])
+    scan((acc, curr) => [...acc, ...curr], []),
+    map(entries => shuffle(entries))
   ).toPromise();
 };
