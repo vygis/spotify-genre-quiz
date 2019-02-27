@@ -2,7 +2,7 @@ import React from 'react';
 import { hot } from 'react-hot-loader/root';
 
 import Game from './game';
-import Button from './button';
+import LoadingButton from './loadingButton';
 
 class App extends React.Component {
   constructor(props, context) {
@@ -55,8 +55,8 @@ class App extends React.Component {
         </nav>
         <div className="container-fluid pt-5 pb-5">
           <div className="text-center">
-            {!this.state.gameHasBeenStarted && <Button
-                isDisabled={this.state.gameIsLoading}
+            {!this.state.gameHasBeenStarted && <LoadingButton
+                isLoading={this.state.gameIsLoading}
                 onClickFn={this.startGame}
                 title="Start"
               />}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Question from './question';
 import GameResult from './gameResult';
+import GameProgress from './gameProgress';
 
 class Game extends Component {
   constructor(props, context) {
@@ -29,11 +30,17 @@ class Game extends Component {
     return (
       <div>
         {!this.props.isComplete &&
-          <Question
-            isLastQuestion={this.state.currentQuestionIndex === this.props.questionCount-1}
-            onNext={this.handleNextFn}
-            question={this.props.questions[this.state.currentQuestionIndex]}
-          />
+          <div className="card mx-auto">
+            <Question
+              isLastQuestion={this.state.currentQuestionIndex === this.props.questionCount-1}
+              onNext={this.handleNextFn}
+              question={this.props.questions[this.state.currentQuestionIndex]}
+            />
+            <GameProgress
+              current={this.state.currentQuestionIndex+1}
+              total={this.props.questionCount}
+            />
+          </div>
         }
         {this.props.isComplete &&
           <GameResult

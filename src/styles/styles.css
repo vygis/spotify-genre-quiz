@@ -22,12 +22,29 @@ body {
   width: 300px;
   border-color: #00ace6;
   background-color: #e6f9ff;
+  box-shadow: 0 3px 5px #999999;
+}
+.card-body {
+  padding-left: 0;
+  padding-right: 0;
+}
+.card-footer {
+  color: #ffffff;
+  background-color: #00ace6;
+  border: none;
+  padding: 0.25em;
+  border-top: 1px solid #0099cc;
+  position: relative;
 }
 .card-img-wrapper {
   width: 298px;
   max-height: 298px;
   overflow-y: hidden;
   position: relative;
+  border-bottom: 1px solid #0099cc;
+}
+.card img {
+  width: 100%;
 }
 .card-overlay {
   position: absolute;
@@ -41,4 +58,17 @@ body {
   height: 100%;
   width: 100%;
   color: #ffffff;
+}
+.loading-button {
+  position: relative;
+}
+.centerer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

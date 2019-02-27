@@ -33,9 +33,9 @@ class Question extends Component {
   }
   render() {
     return (
-      <div className="card mx-auto">
-        <div className="card-img-wrapper">
-          <img className="card-img-top" src={this.props.question.albumCoverUrl}/>
+      <div>
+        <div className="card-img-top card-img-wrapper">
+          <img src={this.props.question.albumCoverUrl}/>
           {this.state.isAnswered &&
             <AnswerResult
               isAnswerCorrect={this.state.isAnswerCorrect}

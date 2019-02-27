@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from './button';
+import LoadingButton from './loadingButton';
 
 const GameResult = ({ answers, isLoading, onClickFn }) => (
   <div>
@@ -11,8 +11,8 @@ const GameResult = ({ answers, isLoading, onClickFn }) => (
       {answers.length} questions correctly.
     </p>
     <div>
-      <Button
-        isDisabled={isLoading}
+      <LoadingButton
+        isLoading={isLoading}
         onClickFn={onClickFn}
         title="Play again"
       />
