@@ -1,0 +1,385 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app should display the game result when all questions are answered, and restart the game 1`] = `
+<GameResult
+  answers={
+    Array [
+      Object {
+        "albumCoverUrl": "http://sex-drugs-and-sausage-rolls",
+        "genre": "rock",
+        "genreOptions": Array [
+          Object {
+            "isCorrect": true,
+            "value": "rock",
+          },
+          Object {
+            "isCorrect": false,
+            "value": "disco",
+          },
+        ],
+        "isAnswerCorrect": false,
+      },
+      Object {
+        "albumCoverUrl": "http://pavarotti-lives",
+        "genre": "opera",
+        "genreOptions": Array [
+          Object {
+            "isCorrect": true,
+            "value": "opera",
+          },
+          Object {
+            "isCorrect": false,
+            "value": "techno",
+          },
+        ],
+        "isAnswerCorrect": true,
+      },
+    ]
+  }
+  isLoading={false}
+  onClickFn={[Function]}
+>
+  <div>
+    <h2>
+      Quiz completed!
+    </h2>
+    <p>
+      You answered 
+      1
+       out of 
+      2
+       questions correctly.
+    </p>
+    <div>
+      <LoadingButton
+        isLoading={false}
+        onClickFn={[Function]}
+        title="Play again"
+      >
+        <button
+          className="btn btn-dark rounded-pill loading-button"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            style={
+              Object {
+                "visibility": "unset",
+              }
+            }
+          >
+            Play again
+          </span>
+        </button>
+      </LoadingButton>
+    </div>
+  </div>
+</GameResult>
+`;
+
+exports[`app should display the game result when all questions are answered, and restart the game 2`] = `
+<Game
+  isComplete={false}
+  isLoading={false}
+  onCompleteFn={[Function]}
+  onRestartFn={[Function]}
+  questionCount={1}
+  questions={
+    Array [
+      Object {
+        "albumCoverUrl": "http://been-cleaning-the-barn",
+        "genre": "country",
+        "genreOptions": Array [
+          Object {
+            "isCorrect": true,
+            "value": "country",
+          },
+          Object {
+            "isCorrect": false,
+            "value": "pop",
+          },
+        ],
+      },
+    ]
+  }
+>
+  <div>
+    <div
+      className="card mx-auto"
+    >
+      <Question
+        isLastQuestion={true}
+        onNext={[Function]}
+        question={
+          Object {
+            "albumCoverUrl": "http://been-cleaning-the-barn",
+            "genre": "country",
+            "genreOptions": Array [
+              Object {
+                "isCorrect": true,
+                "value": "country",
+              },
+              Object {
+                "isCorrect": false,
+                "value": "pop",
+              },
+            ],
+          }
+        }
+      >
+        <div>
+          <div
+            className="card-img-top card-img-wrapper"
+          >
+            <img
+              src="http://been-cleaning-the-barn"
+            />
+          </div>
+          <div
+            className="card-body"
+          >
+            <div
+              className="card-text"
+            >
+              <AnswerOption
+                answer={
+                  Object {
+                    "isCorrect": true,
+                    "value": "country",
+                  }
+                }
+                discloseResult={false}
+                key="0"
+                onClickFn={[Function]}
+              >
+                <span
+                  className="badge badge-pill badge-dark mr-2 text-uppercase "
+                  onClick={[Function]}
+                >
+                  country
+                </span>
+              </AnswerOption>
+              <AnswerOption
+                answer={
+                  Object {
+                    "isCorrect": false,
+                    "value": "pop",
+                  }
+                }
+                discloseResult={false}
+                key="1"
+                onClickFn={[Function]}
+              >
+                <span
+                  className="badge badge-pill badge-dark mr-2 text-uppercase "
+                  onClick={[Function]}
+                >
+                  pop
+                </span>
+              </AnswerOption>
+            </div>
+          </div>
+        </div>
+      </Question>
+      <GameProgress
+        current={1}
+        total={1}
+      >
+        <div
+          className="card-footer"
+        >
+          1
+           / 
+          1
+        </div>
+      </GameProgress>
+    </div>
+  </div>
+</Game>
+`;
+
+exports[`app should display the game when starting 1`] = `
+<Game
+  isComplete={false}
+  isLoading={false}
+  onCompleteFn={[Function]}
+  onRestartFn={[Function]}
+  questionCount={2}
+  questions={
+    Array [
+      Object {
+        "albumCoverUrl": "http://sex-drugs-and-sausage-rolls",
+        "genre": "rock",
+        "genreOptions": Array [
+          Object {
+            "isCorrect": true,
+            "value": "rock",
+          },
+          Object {
+            "isCorrect": false,
+            "value": "disco",
+          },
+        ],
+      },
+      Object {
+        "albumCoverUrl": "http://pavarotti-lives",
+        "genre": "opera",
+        "genreOptions": Array [
+          Object {
+            "isCorrect": true,
+            "value": "opera",
+          },
+          Object {
+            "isCorrect": false,
+            "value": "techno",
+          },
+        ],
+      },
+    ]
+  }
+>
+  <div>
+    <div
+      className="card mx-auto"
+    >
+      <Question
+        isLastQuestion={false}
+        onNext={[Function]}
+        question={
+          Object {
+            "albumCoverUrl": "http://sex-drugs-and-sausage-rolls",
+            "genre": "rock",
+            "genreOptions": Array [
+              Object {
+                "isCorrect": true,
+                "value": "rock",
+              },
+              Object {
+                "isCorrect": false,
+                "value": "disco",
+              },
+            ],
+          }
+        }
+      >
+        <div>
+          <div
+            className="card-img-top card-img-wrapper"
+          >
+            <img
+              src="http://sex-drugs-and-sausage-rolls"
+            />
+          </div>
+          <div
+            className="card-body"
+          >
+            <div
+              className="card-text"
+            >
+              <AnswerOption
+                answer={
+                  Object {
+                    "isCorrect": true,
+                    "value": "rock",
+                  }
+                }
+                discloseResult={false}
+                key="0"
+                onClickFn={[Function]}
+              >
+                <span
+                  className="badge badge-pill badge-dark mr-2 text-uppercase "
+                  onClick={[Function]}
+                >
+                  rock
+                </span>
+              </AnswerOption>
+              <AnswerOption
+                answer={
+                  Object {
+                    "isCorrect": false,
+                    "value": "disco",
+                  }
+                }
+                discloseResult={false}
+                key="1"
+                onClickFn={[Function]}
+              >
+                <span
+                  className="badge badge-pill badge-dark mr-2 text-uppercase "
+                  onClick={[Function]}
+                >
+                  disco
+                </span>
+              </AnswerOption>
+            </div>
+          </div>
+        </div>
+      </Question>
+      <GameProgress
+        current={1}
+        total={2}
+      >
+        <div
+          className="card-footer"
+        >
+          1
+           / 
+          2
+        </div>
+      </GameProgress>
+    </div>
+  </div>
+</Game>
+`;
+
+exports[`app should indicate when a question is answered correctly 1`] = `
+<AnswerResult
+  isAnswerCorrect={true}
+  isLastQuestion={false}
+  onClickFn={[Function]}
+>
+  <div
+    className="card-overlay"
+  >
+    <div
+      className="display-4"
+    >
+      CORRECT!
+    </div>
+    <button
+      className="btn btn-outline-light rounded-pill"
+      onClick={[Function]}
+      type="button"
+    >
+      Next
+    </button>
+  </div>
+</AnswerResult>
+`;
+
+exports[`app should indicate when a question is answered incorrectly 1`] = `
+<AnswerResult
+  isAnswerCorrect={false}
+  isLastQuestion={false}
+  onClickFn={[Function]}
+>
+  <div
+    className="card-overlay"
+  >
+    <div
+      className="display-4"
+    >
+      WRONG!
+    </div>
+    <button
+      className="btn btn-outline-light rounded-pill"
+      onClick={[Function]}
+      type="button"
+    >
+      Next
+    </button>
+  </div>
+</AnswerResult>
+`;
