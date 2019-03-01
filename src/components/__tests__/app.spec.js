@@ -11,12 +11,12 @@ describe('app', () => {
     fetch.mockResponse(JSON.stringify([
       {
         genre: 'rock',
-        albumCoverUrl: 'http://sex-drugs-and-sausage-rolls',
+        albumCover: '/sex-drugs-and-sausage-rolls/',
         genreOptions: [{ value: 'rock', isCorrect: true}, { value: 'disco', isCorrect: false }]
       },
       {
         genre: 'opera',
-        albumCoverUrl: 'http://pavarotti-lives',
+        albumCover: '/pavarotti-lives/',
         genreOptions: [{ value: 'opera', isCorrect: true}, { value: 'techno', isCorrect: false }]
       }
     ]));
@@ -52,7 +52,7 @@ describe('app', () => {
     fetch.mockResponse(JSON.stringify([
       {
         genre: 'country',
-        albumCoverUrl: 'http://been-cleaning-the-barn',
+        albumCover: '/been-cleaning-the-barn/',
         genreOptions: [{ value: 'country', isCorrect: true}, { value: 'pop', isCorrect: false }]
       }
     ]));

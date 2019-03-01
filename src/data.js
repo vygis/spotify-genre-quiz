@@ -3,6 +3,7 @@ import { retryWhen, map, mergeMap, scan, switchMap, take, tap } from 'rxjs/opera
 import { sample, sampleSize, shuffle, times, uniqBy } from 'lodash';
 import { from, interval } from 'rxjs';
 import { stringify } from 'qs';
+import imageToBase64 from 'image-to-base64';
 
 function getGenreOptions(allGenres, genre, numberOfIncorrectOptions = 4, relGenres = relatedGenres) {
   return shuffle(
@@ -39,29 +40,30 @@ export default async function getQuizData (resultSampleSize) {
     })),
     switchMap(({ allGenres, sampledGenres }) => from(sampledGenres).pipe(
       mergeMap(({ genre, occurrences }) => api.get(`/recommendations?seed_genres=${genre}`).pipe(
-        map(({ data: { tracks }}) => {
-          return sampleSize(
-              uniqBy(
-                tracks
-                  .filter(({ artists}) => artists.length <2)
-                  .map(({ album }) => album)
-                  .filter(({ album_type }) => album_type !== 'compilation'),
-                'id'
-              ),
-              occurrences
-            )
-              .map(({ artists, images, name }) => ({
-                genre,
-                artistName: artists[0].name,
-                albumName: name,
-                albumCoverUrl: images[1].url,
-                genreOptions: getGenreOptions(allGenres, genre)
-              }));
-          }
-        )
+        map(({ data: { tracks }}) => sampleSize(
+          uniqBy(
+            tracks
+              .filter(({ artists}) => artists.length <2)
+              .map(({ album }) => album)
+              .filter(({ album_type }) => album_type !== 'compilation'),
+            'id'
+          ),
+          occurrences
+        )),
+        mergeMap(sampledTracks => from(sampledTracks).pipe(
+          mergeMap(({ artists, images, name }) => from(imageToBase64(images[1].url)).pipe(
+            map((base64data) => ({
+              genre,
+              artistName: artists[0].name,
+              albumName: name,
+              albumCover: base64data,
+              genreOptions: getGenreOptions(allGenres, genre)
+            }))
+          ))
+        ))
       ))
     )),
-    scan((acc, curr) => [...acc, ...curr], []),
+    scan((acc, curr) => [...acc, curr], []),
     map(entries => shuffle(entries))
   ).toPromise();
 };

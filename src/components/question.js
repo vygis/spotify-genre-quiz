@@ -35,7 +35,7 @@ class Question extends Component {
     return (
       <div>
         <div className="card-img-top card-img-wrapper">
-          <img src={this.props.question.albumCoverUrl}/>
+          <img src={"data:image/jpeg;base64," + this.props.question.albumCover}/>
           {this.state.isAnswered &&
             <AnswerResult
               isAnswerCorrect={this.state.isAnswerCorrect}

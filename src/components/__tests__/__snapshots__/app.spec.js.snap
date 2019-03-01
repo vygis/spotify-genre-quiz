@@ -5,7 +5,7 @@ exports[`app should display the game result when all questions are answered, and
   answers={
     Array [
       Object {
-        "albumCoverUrl": "http://sex-drugs-and-sausage-rolls",
+        "albumCover": "/sex-drugs-and-sausage-rolls/",
         "genre": "rock",
         "genreOptions": Array [
           Object {
@@ -20,7 +20,7 @@ exports[`app should display the game result when all questions are answered, and
         "isAnswerCorrect": false,
       },
       Object {
-        "albumCoverUrl": "http://pavarotti-lives",
+        "albumCover": "/pavarotti-lives/",
         "genre": "opera",
         "genreOptions": Array [
           Object {
@@ -88,7 +88,7 @@ exports[`app should display the game result when all questions are answered, and
   questions={
     Array [
       Object {
-        "albumCoverUrl": "http://been-cleaning-the-barn",
+        "albumCover": "/been-cleaning-the-barn/",
         "genre": "country",
         "genreOptions": Array [
           Object {
@@ -113,7 +113,7 @@ exports[`app should display the game result when all questions are answered, and
         onNext={[Function]}
         question={
           Object {
-            "albumCoverUrl": "http://been-cleaning-the-barn",
+            "albumCover": "/been-cleaning-the-barn/",
             "genre": "country",
             "genreOptions": Array [
               Object {
@@ -133,7 +133,7 @@ exports[`app should display the game result when all questions are answered, and
             className="card-img-top card-img-wrapper"
           >
             <img
-              src="http://been-cleaning-the-barn"
+              src="data:image/jpeg;base64,/been-cleaning-the-barn/"
             />
           </div>
           <div
@@ -209,7 +209,7 @@ exports[`app should display the game when starting 1`] = `
   questions={
     Array [
       Object {
-        "albumCoverUrl": "http://sex-drugs-and-sausage-rolls",
+        "albumCover": "/sex-drugs-and-sausage-rolls/",
         "genre": "rock",
         "genreOptions": Array [
           Object {
@@ -223,7 +223,7 @@ exports[`app should display the game when starting 1`] = `
         ],
       },
       Object {
-        "albumCoverUrl": "http://pavarotti-lives",
+        "albumCover": "/pavarotti-lives/",
         "genre": "opera",
         "genreOptions": Array [
           Object {
@@ -248,7 +248,7 @@ exports[`app should display the game when starting 1`] = `
         onNext={[Function]}
         question={
           Object {
-            "albumCoverUrl": "http://sex-drugs-and-sausage-rolls",
+            "albumCover": "/sex-drugs-and-sausage-rolls/",
             "genre": "rock",
             "genreOptions": Array [
               Object {
@@ -268,7 +268,7 @@ exports[`app should display the game when starting 1`] = `
             className="card-img-top card-img-wrapper"
           >
             <img
-              src="http://sex-drugs-and-sausage-rolls"
+              src="data:image/jpeg;base64,/sex-drugs-and-sausage-rolls/"
             />
           </div>
           <div
