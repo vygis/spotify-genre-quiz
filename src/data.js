@@ -1,7 +1,7 @@
 import { api, auth, irrelevantGenres, relatedGenres } from './spotify';
-import { retryWhen, map, mergeMap, scan, switchMap, take, tap } from 'rxjs/operators';
+import { retryWhen, map, mergeMap, reduce, switchMap, tap } from 'rxjs/operators';
 import { sample, sampleSize, shuffle, times, uniqBy } from 'lodash';
-import { from, interval } from 'rxjs';
+import { from, of } from 'rxjs';
 import { stringify } from 'qs';
 import imageToBase64 from 'image-to-base64';
 
@@ -15,16 +15,20 @@ function getGenreOptions(allGenres, genre, numberOfIncorrectOptions = 4, relGenr
   );
 }
 
-export default async function getQuizData (resultSampleSize) {
-  return interval(1000).pipe(
-    mergeMap(() => api.get('/recommendations/available-genre-seeds')),
+export default function quizData$ (resultSampleSize) {
+
+  return of(true).pipe(
+    switchMap(() => api.get('/recommendations/available-genre-seeds')),
     retryWhen(errors => errors.pipe(
-      switchMap(error => auth.post(`/token`, stringify({'grant_type': 'client_credentials'})).pipe(
-        tap(({ data }) => api.defaults.headers.common['Authorization'] = `Bearer ${data.access_token}`),
-        take(1)
-      ))
+      switchMap(error => {
+        if(error.response.status === 401) {
+          return auth.post(`/token`, stringify({'grant_type': 'client_credentials'})).pipe(
+            tap(({ data }) => api.defaults.headers.common['Authorization'] = `Bearer ${data.access_token}`),
+          );
+        }
+        throw new Error(error);
+      })
     )),
-    take(1),
     map(resp => resp.data.genres.filter(genre => !irrelevantGenres.includes(genre))),
     map(genres => ({
       allGenres: genres,
@@ -63,7 +67,7 @@ export default async function getQuizData (resultSampleSize) {
         ))
       ))
     )),
-    scan((acc, curr) => [...acc, curr], []),
+    reduce((acc, curr) => [...acc, curr], []),
     map(entries => shuffle(entries))
-  ).toPromise();
+  );
 };

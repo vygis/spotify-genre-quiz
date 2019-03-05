@@ -7,6 +7,7 @@ export default {
     './src/index.js'
   ],
   mode: 'development',
+  devtool: 'source-map',
   output: {
     publicPath: '/',
     filename: 'bundle.js'

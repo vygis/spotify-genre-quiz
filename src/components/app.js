@@ -10,21 +10,39 @@ class App extends React.Component {
 
     this.state = {
       questions: [],
+      errorMessage: '',
       gameHasBeenStarted: false,
       gameIsCompleted: false,
-      gameIsLoading: true
+      gameIsLoading: true,
+      isError: false
     };
 
     this.completeGame = this.completeGame.bind(this);
     this.restartGame = this.restartGame.bind(this);
     this.startGame = this.startGame.bind(this);
   }
+  handleError({ message }) {
+    this.setState({
+      errorMessage: message,
+      isError: true,
+      gameIsLoading: false
+    })
+  }
   async componentDidMount() {
-    await this.initialiseData();
+    try {
+      await this.initialiseData();
+    } catch (error) {
+      this.handleError(error);
+    }
   }
   async initialiseData() {
+    const response = await fetch('/data/20');
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const json = await response.json();
     this.setState({
-      questions: await fetch('/data/20').then(resp => resp.json()),
+      questions: json,
       gameIsCompleted: false,
       gameIsLoading: false
     });
@@ -38,7 +56,11 @@ class App extends React.Component {
     this.setState({
       gameIsLoading: true
     });
-    await this.initialiseData();
+    try {
+      await this.initialiseData();
+    } catch (err) {
+      this.handleError(err);
+    }
   }
   startGame() {
     this.setState({
@@ -55,7 +77,12 @@ class App extends React.Component {
         </nav>
         <div className="container-fluid pt-5 pb-5">
           <div className="text-center">
-            {!this.state.gameHasBeenStarted && <LoadingButton
+            {this.state.isError &&
+              <span className="alert alert-danger">
+                {this.state.errorMessage}. Try reloading the page.
+              </span>
+            }
+            {!this.state.gameHasBeenStarted && !this.state.isError && <LoadingButton
                 isLoading={this.state.gameIsLoading}
                 onClickFn={this.startGame}
                 title="Start"

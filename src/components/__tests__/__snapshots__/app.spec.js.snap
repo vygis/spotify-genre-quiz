@@ -1,6 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`app should display the game result when all questions are answered, and restart the game 1`] = `
+exports[`app when the api errors should display the error 1`] = `
+<App>
+  <div>
+    <nav
+      className="navbar navbar-dark"
+    >
+      <a
+        className="navbar-brand text-uppercase"
+        href="/"
+      >
+        Spotify Genre Quiz
+      </a>
+    </nav>
+    <div
+      className="container-fluid pt-5 pb-5"
+    >
+      <div
+        className="text-center"
+      >
+        <span
+          className="alert alert-danger"
+        >
+          Network error
+          . Try reloading the page.
+        </span>
+      </div>
+    </div>
+  </div>
+</App>
+`;
+
+exports[`app when the api returns a valid payload should display the game result when all questions are answered, and restart the game 1`] = `
 <GameResult
   answers={
     Array [
@@ -78,7 +109,7 @@ exports[`app should display the game result when all questions are answered, and
 </GameResult>
 `;
 
-exports[`app should display the game result when all questions are answered, and restart the game 2`] = `
+exports[`app when the api returns a valid payload should display the game result when all questions are answered, and restart the game 2`] = `
 <Game
   isComplete={false}
   isLoading={false}
@@ -199,7 +230,7 @@ exports[`app should display the game result when all questions are answered, and
 </Game>
 `;
 
-exports[`app should display the game when starting 1`] = `
+exports[`app when the api returns a valid payload should display the game when starting 1`] = `
 <Game
   isComplete={false}
   isLoading={false}
@@ -334,7 +365,7 @@ exports[`app should display the game when starting 1`] = `
 </Game>
 `;
 
-exports[`app should indicate when a question is answered correctly 1`] = `
+exports[`app when the api returns a valid payload should indicate when a question is answered correctly 1`] = `
 <AnswerResult
   isAnswerCorrect={true}
   isLastQuestion={false}
@@ -359,7 +390,7 @@ exports[`app should indicate when a question is answered correctly 1`] = `
 </AnswerResult>
 `;
 
-exports[`app should indicate when a question is answered incorrectly 1`] = `
+exports[`app when the api returns a valid payload should indicate when a question is answered incorrectly 1`] = `
 <AnswerResult
   isAnswerCorrect={false}
   isLastQuestion={false}

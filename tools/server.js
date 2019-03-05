@@ -1,8 +1,8 @@
 import express from 'express';
-import getQuizData from '../src/data';
 import path from 'path';
 import webpack from 'webpack';
 import config from '../webpack.config.js';
+import quizData$ from '../src/data';
 
 const app = express();
 const compiler = webpack(config);
@@ -19,6 +19,11 @@ app.get('/', function(req, res) {
   res.sendFile(path.join( __dirname, '../src/index.html'));
 });
 
-app.get('/data/:count', async (req, res) => res.json(await getQuizData(req.params.count)));
+app.get('/data/:count', (req, res) => {
+  quizData$(req.params.count).subscribe({
+    next: data => res.json(data),
+    error: err => res.status(500).json({error: err.stack})
+  });
+});
 
 app.listen(port, () => console.info(`App listening on port ${port}`));
