@@ -28,7 +28,7 @@ class Game extends Component {
   }
   render() {
     return (
-      <div>
+      <section>
         {!this.props.isComplete &&
           <div className="card mx-auto">
             <Question
@@ -49,7 +49,7 @@ class Game extends Component {
             onClickFn={this.props.onRestartFn}
           />
         }
-      </div>
+      </section>
     );
   }
 }

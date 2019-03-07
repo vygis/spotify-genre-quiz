@@ -7,6 +7,9 @@ body {
 .navbar, .badge {
   background-color: #0099cc;
 }
+.about-page a {
+  color: #0099cc;
+}
 .badge {
   cursor: pointer;
 }

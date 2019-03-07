@@ -1,8 +1,11 @@
-# Spotify genre quiz
+# Spotify artwork quiz
+
 
 Guess the music genre by an album cover
 
 Quiz app utilising Spotify API, node.js, and react.js
+
+Deployed [here](http://spotifygenrequiz.herokuapp.com/).
 
 ## Instructions
 

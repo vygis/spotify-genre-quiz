@@ -36,7 +36,8 @@ export default {
       { test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader'] },
       { test: /(\.html)$/, loader: 'html-loader' },
       { test: /(\.css)$/, loaders: [MiniCssExtractPlugin.loader,'css-loader?sourceMap=true'] },
-      { test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' }
+      { test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
+      { test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$/, loader: 'file-loader?name=[name].[ext]' }
     ]
   }
 };

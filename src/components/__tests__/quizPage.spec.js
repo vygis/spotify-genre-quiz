@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import App from '../app';
+import QuizPage from '../quizPage';
 
-describe('app', () => {
+describe('quizPage', () => {
 
   let wrapper;
 
@@ -11,7 +11,7 @@ describe('app', () => {
 
     it('should display the error', done => {
       fetch.mockReject(new Error('Network error'));
-      wrapper = mount(<App/>);
+      wrapper = mount(<QuizPage/>);
       process.nextTick(() => {
         wrapper.find('button').simulate('click');
         fetch.mockClear();
@@ -36,7 +36,7 @@ describe('app', () => {
           genreOptions: [{ value: 'opera', isCorrect: true}, { value: 'techno', isCorrect: false }]
         }
       ]));
-      wrapper = mount(<App/>);
+      wrapper = mount(<QuizPage/>);
       process.nextTick(() => {
         wrapper.find('button').simulate('click');
         fetch.mockClear();

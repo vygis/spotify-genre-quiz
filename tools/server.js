@@ -15,15 +15,15 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join( __dirname, '../src/index.html'));
-});
-
 app.get('/data/:count', (req, res) => {
   quizData$(req.params.count).subscribe({
     next: data => res.json(data),
     error: err => res.status(500).json({error: err.stack})
   });
+});
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join( __dirname, '../src/index.html'));
 });
 
 app.listen(port, () => console.info(`App listening on port ${port}`));

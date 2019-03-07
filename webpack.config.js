@@ -22,7 +22,8 @@ export default {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader'] },
       { test: /(\.css)$/, loaders: ['style-loader', 'css-loader?sourceMap'] },
-      { test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' }
+      { test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
+      { test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$/, loader: 'file-loader?name=[name].[ext]' }
     ]
   }
 };
