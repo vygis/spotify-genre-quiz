@@ -39,6 +39,15 @@ body {
   border-top: 1px solid #0099cc;
   position: relative;
 }
+.progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
+  height: 100%;
+  background-color: rgba(0,0,0,0.15);
+  border: none;
+}
 .card-img-wrapper {
   width: 298px;
   max-height: 298px;
@@ -48,6 +57,9 @@ body {
 }
 .card img {
   width: 100%;
+}
+.badge-pill {
+  margin: 0 0.2em;
 }
 .card-overlay {
   position: absolute;

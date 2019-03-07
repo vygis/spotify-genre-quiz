@@ -10,21 +10,29 @@ class Game extends Component {
 
     this.state = {
       currentQuestionIndex: 0,
+      upcomingQuestionIndex: 0,
       answers: []
     }
 
+    this.handleAnswerSelectFn = this.handleAnswerSelectFn.bind(this);
     this.handleNextFn = this.handleNextFn.bind(this);
   }
   handleNextFn(answer, isLastAnswer) {
     this.setState(oldState => {
       return {
         currentQuestionIndex: isLastAnswer ? 0 : oldState.currentQuestionIndex + 1,
-        answers: oldState.currentQuestionIndex === 0 ? [answer] : oldState.answers.concat(answer)
+        answers: oldState.currentQuestionIndex === 0 ? [answer] : oldState.answers.concat(answer),
+        upcomingQuestionIndex: isLastAnswer ? 0 : oldState.upcomingQuestionIndex
       }
     });
     if (isLastAnswer) {
       this.props.onCompleteFn();
     }
+  }
+  handleAnswerSelectFn() {
+    this.setState(oldState => ({
+      upcomingQuestionIndex: oldState.upcomingQuestionIndex+1
+    }))
   }
   render() {
     return (
@@ -33,11 +41,12 @@ class Game extends Component {
           <div className="card mx-auto">
             <Question
               isLastQuestion={this.state.currentQuestionIndex === this.props.questionCount-1}
+              onAnswerSelect={this.handleAnswerSelectFn}
               onNext={this.handleNextFn}
               question={this.props.questions[this.state.currentQuestionIndex]}
             />
             <GameProgress
-              current={this.state.currentQuestionIndex+1}
+              upcoming={this.state.upcomingQuestionIndex}
               total={this.props.questionCount}
             />
           </div>

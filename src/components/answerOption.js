@@ -17,7 +17,7 @@ class AnswerOption extends Component {
   render() {
     return (
       <span
-        className={'badge badge-pill badge-dark mr-2 text-uppercase ' + this.class}
+        className={'badge badge-pill badge-dark text-uppercase ' + this.class}
         onClick={this.handleClickFn}
       >
         {this.props.answer.value}

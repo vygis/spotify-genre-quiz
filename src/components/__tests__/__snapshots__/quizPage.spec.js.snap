@@ -125,6 +125,7 @@ exports[`quizPage when the api returns a valid payload should display the game r
     >
       <Question
         isLastQuestion={true}
+        onAnswerSelect={[Function]}
         onNext={[Function]}
         question={
           Object {
@@ -169,7 +170,7 @@ exports[`quizPage when the api returns a valid payload should display the game r
                 onClickFn={[Function]}
               >
                 <span
-                  className="badge badge-pill badge-dark mr-2 text-uppercase "
+                  className="badge badge-pill badge-dark text-uppercase "
                   onClick={[Function]}
                 >
                   country
@@ -187,7 +188,7 @@ exports[`quizPage when the api returns a valid payload should display the game r
                 onClickFn={[Function]}
               >
                 <span
-                  className="badge badge-pill badge-dark mr-2 text-uppercase "
+                  className="badge badge-pill badge-dark text-uppercase "
                   onClick={[Function]}
                 >
                   pop
@@ -198,15 +199,20 @@ exports[`quizPage when the api returns a valid payload should display the game r
         </div>
       </Question>
       <GameProgress
-        current={1}
         total={1}
+        upcoming={0}
       >
         <div
-          className="card-footer"
+          className="card-footer pt-3"
         >
-          1
-           / 
-          1
+          <div
+            className="card-footer progress-bar"
+            style={
+              Object {
+                "width": 0,
+              }
+            }
+          />
         </div>
       </GameProgress>
     </div>
@@ -260,6 +266,7 @@ exports[`quizPage when the api returns a valid payload should display the game w
     >
       <Question
         isLastQuestion={false}
+        onAnswerSelect={[Function]}
         onNext={[Function]}
         question={
           Object {
@@ -304,7 +311,7 @@ exports[`quizPage when the api returns a valid payload should display the game w
                 onClickFn={[Function]}
               >
                 <span
-                  className="badge badge-pill badge-dark mr-2 text-uppercase "
+                  className="badge badge-pill badge-dark text-uppercase "
                   onClick={[Function]}
                 >
                   rock
@@ -322,7 +329,7 @@ exports[`quizPage when the api returns a valid payload should display the game w
                 onClickFn={[Function]}
               >
                 <span
-                  className="badge badge-pill badge-dark mr-2 text-uppercase "
+                  className="badge badge-pill badge-dark text-uppercase "
                   onClick={[Function]}
                 >
                   disco
@@ -333,15 +340,20 @@ exports[`quizPage when the api returns a valid payload should display the game w
         </div>
       </Question>
       <GameProgress
-        current={1}
         total={2}
+        upcoming={0}
       >
         <div
-          className="card-footer"
+          className="card-footer pt-3"
         >
-          1
-           / 
-          2
+          <div
+            className="card-footer progress-bar"
+            style={
+              Object {
+                "width": 0,
+              }
+            }
+          />
         </div>
       </GameProgress>
     </div>

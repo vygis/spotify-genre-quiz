@@ -30,6 +30,7 @@ class Question extends Component {
       isAnswered: true,
       isAnswerCorrect: matchedAnswer && matchedAnswer.isCorrect
     })
+    this.props.onAnswerSelect();
   }
   render() {
     return (
@@ -63,6 +64,7 @@ class Question extends Component {
 
 Question.propTypes = {
   isLastQuestion: PropTypes.bool.isRequired,
+  onAnswerSelect: PropTypes.func.isRequired,
   onNext: PropTypes.func.isRequired,
   question: PropTypes.object.isRequired
 }
