@@ -29,7 +29,7 @@ class Question extends Component {
     this.setState({
       isAnswered: true,
       isAnswerCorrect: matchedAnswer && matchedAnswer.isCorrect
-    })
+    });
     this.props.onAnswerSelect();
   }
   render() {
@@ -67,6 +67,6 @@ Question.propTypes = {
   onAnswerSelect: PropTypes.func.isRequired,
   onNext: PropTypes.func.isRequired,
   question: PropTypes.object.isRequired
-}
+};
 
 export default Question;

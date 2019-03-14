@@ -90,7 +90,6 @@ const relatedGenres = {
   'punk-rock': ['punk', 'rock'],
   'power-pop': ['pop'],
   'progressive-house': ['dance', 'edm', 'electronic', 'house', 'techno'],
-  'psych-rock': ['rock'],
   reggae: ['reggaeton'],
   reggaeton: ['reggae'],
   rock: ['alt-rock', 'alternative', 'goth', 'grunge', 'guitar', 'hard-rock', 'indie', 'psych-rock', 'punk-rock', 'rock-n-roll', 'rockabilly', 'ska'],

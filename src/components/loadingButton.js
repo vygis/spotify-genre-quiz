@@ -18,10 +18,10 @@ LoadingButton.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   onClickFn: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired
-}
+};
 
 LoadingButton.defaultProps = {
   isLoading: false
-}
+};
 
 export default LoadingButton;

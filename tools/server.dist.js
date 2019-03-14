@@ -26,7 +26,7 @@ app.listen(port, (error) => {
     console.error(error);
   }
   else {
-    console.info(`App listening on port ${port}`)
+    console.info(`App listening on port ${port}`);
   }
 });
 

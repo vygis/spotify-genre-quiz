@@ -24,5 +24,5 @@ GameResult.propTypes = {
   answers: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   onClickFn: PropTypes.func.isRequired
-}
+};
 export default GameResult;

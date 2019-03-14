@@ -12,7 +12,7 @@ class AnswerOption extends Component {
       : '';
   }
   handleClickFn() {
-    this.props.onClickFn(this.props.answer.value)
+    this.props.onClickFn(this.props.answer.value);
   }
   render() {
     return (
@@ -30,6 +30,6 @@ AnswerOption.propTypes = {
   answer: PropTypes.object.isRequired,
   discloseResult: PropTypes.bool.isRequired,
   onClickFn: PropTypes.func.isRequired
-}
+};
 
 export default AnswerOption;

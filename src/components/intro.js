@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Intro = ({ questionCount }) => {
   return (
@@ -9,10 +10,10 @@ const Intro = ({ questionCount }) => {
         </strong>
       </p>
       <p>
-        Is that true in the world of music, though? Haven't we all seen countless cliché album covers that immediately tell what kind of music the artist is playing?
+        Is that true in the world of music, though? Haven&#39;t we all seen countless cliché album covers that immediately tell what kind of music the artist is playing?
       </p>
       <p>
-        How many hip-hop LP's are graced with snaps of tattooed muscular guys with gold chains?
+        How many hip-hop LP&#39;s are graced with snaps of tattooed muscular guys with gold chains?
         Heavy metal albums? Endless variations of ominous cloaked figures, toothed monsters, and skulls, with heavily stylysed band logos stamped on the top!
       </p>
       <p>
@@ -20,6 +21,10 @@ const Intro = ({ questionCount }) => {
       </p>
     </section>
   );
-}
+};
+
+Intro.propTypes = {
+  questionCount: PropTypes.number.isRequired
+};
 
 export default Intro;

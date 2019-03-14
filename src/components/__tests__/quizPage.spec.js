@@ -78,7 +78,7 @@ describe('quizPage', () => {
         wrapper.update();
         expect(wrapper.find('Game')).toMatchSnapshot();
         done();
-      })
+      });
     });
   });
 });

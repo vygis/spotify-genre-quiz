@@ -14,6 +14,6 @@ AnswerResult.propTypes = {
   isAnswerCorrect: PropTypes.bool.isRequired,
   isLastQuestion: PropTypes.bool.isRequired,
   onClickFn: PropTypes.func.isRequired
-}
+};
 
 export default AnswerResult;

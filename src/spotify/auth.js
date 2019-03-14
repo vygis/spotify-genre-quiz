@@ -7,7 +7,8 @@ const auth = Axios.create({
     'Authorization': 'Basic ' + encode(`${process.env.SPOTIFY_ID}:${process.env.SPOTIFY_SECRET}`),
     'Content-Type': 'application/x-www-form-urlencoded'
   }
-})
+});
+
 export {
   auth
 };

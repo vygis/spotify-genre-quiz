@@ -6,7 +6,7 @@ console.info(blue('Generating Webpack bundles'));
 
 webpack(webpackConfig).run((err, stats) => {
   if (err) {
-    console.error(red(error));
+    console.error(red(err));
     return 1;
   }
   console.log(stats);

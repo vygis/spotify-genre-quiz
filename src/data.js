@@ -70,4 +70,4 @@ export default function quizData$ (resultSampleSize) {
     reduce((acc, curr) => [...acc, curr], []),
     map(entries => shuffle(entries))
   );
-};
+}

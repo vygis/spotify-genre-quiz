@@ -8,7 +8,7 @@ class GameProgress extends Component {
     this.ref = React.createRef();
     this.state = {
       totalWidth: 0
-    }
+    };
   }
 
   componentDidMount() {
@@ -28,7 +28,7 @@ class GameProgress extends Component {
       </div>
     );
   }
-};
+}
 
 GameProgress.propTypes = {
   total: PropTypes.number.isRequired,

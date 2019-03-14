@@ -24,7 +24,7 @@ class QuizPage extends React.Component {
       errorMessage: message,
       isError: true,
       gameIsLoading: false
-    })
+    });
   }
   async componentDidMount() {
     try {

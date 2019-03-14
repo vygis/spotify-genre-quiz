@@ -12,7 +12,7 @@ class Game extends Component {
       currentQuestionIndex: 0,
       upcomingQuestionIndex: 0,
       answers: []
-    }
+    };
 
     this.handleAnswerSelectFn = this.handleAnswerSelectFn.bind(this);
     this.handleNextFn = this.handleNextFn.bind(this);
@@ -23,7 +23,7 @@ class Game extends Component {
         currentQuestionIndex: isLastAnswer ? 0 : oldState.currentQuestionIndex + 1,
         answers: oldState.currentQuestionIndex === 0 ? [answer] : oldState.answers.concat(answer),
         upcomingQuestionIndex: isLastAnswer ? 0 : oldState.upcomingQuestionIndex
-      }
+      };
     });
     if (isLastAnswer) {
       this.props.onCompleteFn();
@@ -32,7 +32,7 @@ class Game extends Component {
   handleAnswerSelectFn() {
     this.setState(oldState => ({
       upcomingQuestionIndex: oldState.upcomingQuestionIndex+1
-    }))
+    }));
   }
   render() {
     return (
@@ -70,6 +70,6 @@ Game.propTypes = {
   onRestartFn: PropTypes.func.isRequired,
   questionCount: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired
-}
+};
 
 export default Game;
