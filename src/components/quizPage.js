@@ -1,107 +1,91 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Game from './game';
 import Intro from './intro';
 import LoadingButton from './loadingButton';
 
-class QuizPage extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      questionCount: 20,
-      questions: [],
-      errorMessage: '',
-      gameHasBeenStarted: false,
-      gameIsCompleted: false,
-      gameIsLoading: true,
-      isError: false
-    };
-    this.completeGame = this.completeGame.bind(this);
-    this.restartGame = this.restartGame.bind(this);
-    this.startGame = this.startGame.bind(this);
-  }
-  handleError({ message }) {
-    this.setState({
-      errorMessage: message,
-      isError: true,
-      gameIsLoading: false
-    });
-  }
-  async componentDidMount() {
-    try {
-      await this.initialiseData();
-    } catch (error) {
-      this.handleError(error);
-    }
-  }
-  async initialiseData() {
-    const response = await fetch(`/data/${this.state.questionCount}`);
+const QuizPage = () => {
+  const [questionCount] = useState(20);
+  const [questions, setQuestions] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [gameHasBeenStarted, setGameHasBeenStarted] = useState(false);
+  const [gameIsCompleted, setGameIsCompleted] = useState(false);
+  const [gameIsLoading, setGameIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+
+  const handleError = ({ message }) => {
+    setErrorMessage(message);
+    setIsError(true);
+    setGameIsLoading(true);
+  };
+
+  const initialiseData = async () => {
+    const response = await fetch(`/data/${questionCount}`);
     if (!response.ok) {
       throw new Error(response.statusText);
     }
     const json = await response.json();
-    this.setState({
-      questions: json,
-      gameIsCompleted: false,
-      gameIsLoading: false
-    });
-  }
-  completeGame() {
-    this.setState({
-      gameIsCompleted: true
-    });
-  }
-  async restartGame() {
-    this.setState({
-      gameIsLoading: true
-    });
+    setQuestions(json);
+    setGameIsCompleted(false);
+    setGameIsLoading(false);
+  };
+
+  const startGame = () => setGameHasBeenStarted(true);
+  const completeGame = () => setGameIsCompleted(true);
+  const restartGame = async () => {
+    setGameIsLoading(true);
     try {
-      await this.initialiseData();
+      await initialiseData();
     } catch (err) {
-      this.handleError(err);
+      handleError(err);
     }
-  }
-  startGame() {
-    this.setState({
-      gameHasBeenStarted: true
-    });
-  }
-  render() {
-    return (
-      <>
-        {this.state.isError &&
-          <div className="col-12 pt-3">
-            <span className="alert alert-danger">
-              {this.state.errorMessage}. Try reloading the page.
-            </span>
-          </div>
-        }
-        {!this.state.gameHasBeenStarted && !this.state.isError &&
-          <div className="offset-sm-2 col-sm-8 offset-md-3 col-md-6 offset-lg-4 col-lg-4">
-            <Intro questionCount={this.state.questionCount}/>
-            <div className="text-center pt-3">
-              <LoadingButton
-                isLoading={this.state.gameIsLoading}
-                onClickFn={this.startGame}
-                title="Start"
-              />
-            </div>
-          </div>
-        }
-        {!!this.state.gameHasBeenStarted && !!this.state.questions.length &&
-          <div className="pt-5 offset-lg-4 col-lg-4 text-center">
-            <Game
-              isComplete={this.state.gameIsCompleted}
-              isLoading={this.state.gameIsLoading}
-              onCompleteFn={this.completeGame}
-              onRestartFn={this.restartGame}
-              questionCount={this.state.questions.length}
-              questions={this.state.questions}
+  };
+
+  useEffect(() => {
+    async function fetchData () {
+      try {
+        await initialiseData();
+      } catch (error) {
+        handleError(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  return (
+    <>
+      {isError &&
+        <div className="col-12 pt-3">
+          <span className="alert alert-danger">
+            {errorMessage}. Try reloading the page.
+          </span>
+        </div>
+      }
+      {!gameHasBeenStarted && !isError &&
+        <div className="offset-sm-2 col-sm-8 offset-md-3 col-md-6 offset-lg-4 col-lg-4">
+          <Intro questionCount={questionCount}/>
+          <div className="text-center pt-3">
+            <LoadingButton
+              isLoading={gameIsLoading}
+              onClickFn={startGame}
+              title="Start"
             />
           </div>
-        }
-      </>
-    );
-  }
-}
-
+        </div>
+      }
+      {!!gameHasBeenStarted && !!questions.length &&
+        <div className="pt-5 offset-lg-4 col-lg-4 text-center">
+          <Game
+            isComplete={gameIsCompleted}
+            isLoading={gameIsLoading}
+            onCompleteFn={completeGame}
+            onRestartFn={restartGame}
+            questionCount={questions.length}
+            questions={questions}
+          />
+        </div>
+      }
+    </>
+  );
+};
 export default QuizPage;

@@ -1,34 +1,20 @@
-import React, { Component } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-class GameProgress extends Component {
+const GameProgress = ({ total, upcoming }) => {
 
-  constructor(props, context) {
-    super(props, context);
-    this.ref = React.createRef();
-    this.state = {
-      totalWidth: 0
-    };
-  }
+  const [totalWidth, setTotalWidth] = useState(0);
+  const ref = createRef();
 
-  componentDidMount() {
-    this.setState({
-      totalWidth: this.ref.current.clientWidth
-    });
-  }
+  const getCurrentWidth = () => Math.ceil(totalWidth / total * upcoming);
+  useEffect(() => setTotalWidth(ref.current.clientWidth), []);
 
-  get currentWidth () {
-    return Math.ceil(this.state.totalWidth / this.props.total * this.props.upcoming);
-  }
-
-  render() {
-    return (
-      <div className="card-footer pt-3" ref={this.ref}>
-        <div className="card-footer progress-bar" style={{width: this.currentWidth}}></div>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="card-footer pt-3" ref={ref}>
+      <div className="card-footer progress-bar" style={{width: getCurrentWidth()}}></div>
+    </div>
+  );
+};
 
 GameProgress.propTypes = {
   total: PropTypes.number.isRequired,

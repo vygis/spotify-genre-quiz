@@ -1,30 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class AnswerOption extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.handleClickFn = this.handleClickFn.bind(this);
-  }
-  get class() {
-    return this.props.discloseResult
-      ? this.props.answer.isCorrect ? 'correct' : 'incorrect'
-      : '';
-  }
-  handleClickFn() {
-    this.props.onClickFn(this.props.answer.value);
-  }
-  render() {
-    return (
-      <span
-        className={'badge badge-pill badge-dark text-uppercase ' + this.class}
-        onClick={this.handleClickFn}
-      >
-        {this.props.answer.value}
-      </span>
-    );
-  }
-}
+const AnswerOption = ({ answer, discloseResult, onClickFn }) => {
+
+  const getClass = () =>  discloseResult ? (answer.isCorrect ? 'correct' : 'incorrect') : '';
+  const handleClickFn = () =>  onClickFn(answer.value);
+
+  return (
+    <span
+      className={'badge badge-pill badge-dark text-uppercase ' + getClass()}
+      onClick={handleClickFn}
+    >
+      {answer.value}
+    </span>
+  );
+};
 
 AnswerOption.propTypes = {
   answer: PropTypes.object.isRequired,

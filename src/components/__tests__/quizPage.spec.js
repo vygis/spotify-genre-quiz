@@ -1,7 +1,16 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 
 import QuizPage from '../quizPage';
+
+// fix for https://github.com/enzymejs/enzyme/issues/2073
+const updateWithTimeout = async (wrapper) => {
+  await act(async () => {
+    await new Promise(resolve => setTimeout(resolve, 0));
+    wrapper.update();
+  });
+};
 
 describe('quizPage', () => {
 
@@ -9,21 +18,19 @@ describe('quizPage', () => {
 
   describe('when the api errors', () => {
 
-    it('should display the error', done => {
+    it('should display the error', async (done) => {
       fetch.mockReject(new Error('Network error'));
       wrapper = mount(<QuizPage/>);
-      process.nextTick(() => {
-        wrapper.find('button').simulate('click');
-        fetch.mockClear();
-        expect(wrapper).toMatchSnapshot();
-        done();
-      });
+      await(updateWithTimeout(wrapper));
+      fetch.mockClear();
+      expect(wrapper).toMatchSnapshot();
+      done();
     });
   });
 
   describe('when the api returns a valid payload', () => {
 
-    beforeEach(done => {
+    beforeEach(async (done) => {
       fetch.mockResponse(JSON.stringify([
         {
           genre: 'rock',
@@ -37,11 +44,10 @@ describe('quizPage', () => {
         }
       ]));
       wrapper = mount(<QuizPage/>);
-      process.nextTick(() => {
-        wrapper.find('button').simulate('click');
-        fetch.mockClear();
-        done();
-      });
+      await updateWithTimeout(wrapper);
+      wrapper.find('button').simulate('click');
+      fetch.mockClear();
+      done();
     });
 
     it('should display the game when starting', () => {
@@ -58,7 +64,7 @@ describe('quizPage', () => {
       expect(wrapper.find('AnswerResult')).toMatchSnapshot();
     });
 
-    it('should display the game result when all questions are answered, and restart the game', done => {
+    it('should display the game result when all questions are answered, and restart the game', async (done) => {
       wrapper.find({ answer: { isCorrect: false }}).simulate('click');
       wrapper.find('button').simulate('click');
       wrapper.find({ answer: { isCorrect: true }}).simulate('click');
@@ -72,13 +78,10 @@ describe('quizPage', () => {
           genreOptions: [{ value: 'country', isCorrect: true}, { value: 'pop', isCorrect: false }]
         }
       ]));
-
       wrapper.find('button').simulate('click');
-      process.nextTick(() => {
-        wrapper.update();
-        expect(wrapper.find('Game')).toMatchSnapshot();
-        done();
-      });
+      await(updateWithTimeout(wrapper));
+      expect(wrapper.find('Game')).toMatchSnapshot();
+      done();
     });
   });
 });

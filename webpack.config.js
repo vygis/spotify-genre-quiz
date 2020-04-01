@@ -12,6 +12,11 @@ export default {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html'
