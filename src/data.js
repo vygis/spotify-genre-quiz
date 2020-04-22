@@ -1,6 +1,6 @@
 import { api, auth, irrelevantGenres, relatedGenres } from './spotify';
 import { retryWhen, map, mergeMap, reduce, switchMap, tap } from 'rxjs/operators';
-import { sample, sampleSize, shuffle, times, uniqBy } from 'lodash-es';
+import { sample, sampleSize, shuffle, times, uniqBy } from 'lodash';
 import { from, of } from 'rxjs';
 import { stringify } from 'qs';
 import imageToBase64 from 'image-to-base64';
