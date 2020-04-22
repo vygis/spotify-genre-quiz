@@ -17,6 +17,9 @@ const Question = ({ isLastQuestion, onAnswerSelect, onNext, question }) => {
   };
 
   const selectAnswer = answer => {
+    if (isAnswered) {
+      return;
+    }
     const matchedAnswer = question.genreOptions.find(opt => opt.value === answer);
     setIsAnswered(true);
     setIsAnswerCorrect(matchedAnswer && matchedAnswer.isCorrect);
