@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
+    "ci:test": "jest",
     "debug": "npm run start -- --debug --inspect-brk=9229",
     "start": "nodemon --watch tools --exec babel-node -r dotenv/config tools/server.js",
     "start:dist": "npm run build",
